@@ -1,0 +1,52 @@
+
+#include <iostream>
+using namespace std;
+
+double cpromedio(double suma, int contador) {
+    if (contador == 0) {
+        return 0;
+    }
+    return suma / contador;
+}
+int main() {
+    double calificacion;
+    double suma = 0;
+    int contador = 0;
+
+    do {
+        cout << "ingresa tu calificacion(0-100); O -1 para finalisar programa" << endl;
+        cin >> calificacion;
+
+        if (cin.fail()) {
+            cout << "ERROR, el dato es inaceptable" << endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
+        else {
+            if (calificacion != -1) {
+                if (calificacion >= 0 && calificacion <= 100) {
+                    suma += calificacion;
+                    contador++;
+                }
+                else {
+                    cout << "calificacion fuera de los parametros de (0-100), No se contara" << endl;
+                }
+
+            }
+        }
+    } while (calificacion != -1);
+    double promedio = cpromedio(suma, contador);
+    cout << " El promedio es de " << promedio << endl;
+
+    if (contador == 0) {
+        cout << "Error de datos, No validos" << endl;
+    }
+    else if (promedio >= 70) {
+        cout << "APROBADO *u* "<< endl;
+    }
+    else {
+        cout << "REPROBADO" << endl;
+    }
+    cout << " Programa terminado" << endl;
+    return 0; 
+}
