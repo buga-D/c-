@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+
+bool saldoretirado(double retiro, double &saldo) {
+    if (retiro > saldo) {
+        cout << " saldo insuficiente " << endl;
+        return false;
+    }
+    else {
+        saldo -= retiro;
+        cout << "retiro exitoso" << endl;
+        cout << "saldo restante: " << saldo << endl;
+        return true;
+    }
+}
+int main() {
+    double saldo;
+    double retiro;
+    do {
+        cout << "ingres el saldo dispnible en tu cuenta bancaria " << endl;
+        cin >> saldo;
+
+        if (cin.fail()) {
+            cout << "ERROR, el dato es inaceptable. Ingrese una cantidad " << endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
+        else if (saldo <= 0) {
+            cout << " El dato debe ser positivo " << endl;
+        }
+    } while (cin.fail() || saldo <= 0);
+
+    do {
+        cout << " Ingrese la cantidad que desea retiriar:( 0 para salir). " << endl;
+        cin >> retiro;
+        if (cin.fail()) {
+            cout << " Dato incorrecto ingrese un valor numerico " << endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
+        else if (retiro < 0) {
+            cout << " el dato debe ser positivo +_+ " << endl;
+        }
+        else if (retiro > 0) {
+            saldoretirado(retiro, saldo);
+        }
+
+    } while (retiro != 0 || cin.fail());
+    cout << " Retiro en proceso, gracias por su preferencia. " << endl;
+
+            return 0;
+        }
+
